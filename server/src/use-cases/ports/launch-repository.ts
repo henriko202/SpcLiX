@@ -1,6 +1,7 @@
-import { LaunchData } from "./launch-data"
+import { LaunchDataDTO } from "./launch-data"
 
 export interface LaunchRepository {
-  getNextLaunch(): Promise<LaunchData>
-  getLatestLaunch(): Promise<LaunchData>
+  getNextLaunch(): Promise<LaunchDataDTO>
+  getLatestLaunch(): Promise<LaunchDataDTO>
+  getUpcomingLaunches(): Promise<LaunchDataDTO[] | null>
 }
