@@ -1,4 +1,4 @@
-import { LaunchDataDTO, LaunchDataSchema, LaunchRepository } from "@/use-cases/ports"
+import { LaunchDataArraySchema, LaunchDataDTO, LaunchDataSchema, LaunchRepository } from "@/use-cases/ports"
 import axios from "axios"
 
 export class SpaceXApiRepository implements LaunchRepository {
@@ -20,5 +20,19 @@ export class SpaceXApiRepository implements LaunchRepository {
     })
 
     return retLaunchDataSchema
+  }
+
+  async getUpcomingLaunches(): Promise<LaunchDataDTO[] | null> {
+    const { data } = await axios.get<LaunchDataDTO[]>("https://api.spacexdata.com/v5/launches/upcoming")
+
+    const retLaunchDataArraySchema = LaunchDataArraySchema.validateSync(data, {
+      stripUnknown: true,
+    })
+
+    if (retLaunchDataArraySchema === undefined || retLaunchDataArraySchema.length === 0) {
+      return null
+    }
+
+    return retLaunchDataArraySchema
   }
 }
