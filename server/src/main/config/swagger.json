@@ -71,6 +71,28 @@
           }
         }
       }
+    },
+    "/launches/upcoming": {
+      "get": {
+        "tags": ["Launches"],
+        "summary": "Get the upcoming launches",
+        "description": "This endpoint is used to get the upcoming launches",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Launch"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
