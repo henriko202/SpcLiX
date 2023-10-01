@@ -52,6 +52,25 @@
           }
         }
       }
+    },
+    "/launches/latest": {
+      "get": {
+        "tags": ["Launches"],
+        "summary": "Get the latest launch",
+        "description": "This endpoint is used to get the latest launch",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Launch"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -63,8 +82,7 @@
             "type": "number"
           },
           "name": {
-            "type": "string",
-            "unique": true
+            "type": "string"
           },
           "date_utc": {
             "type": "string"

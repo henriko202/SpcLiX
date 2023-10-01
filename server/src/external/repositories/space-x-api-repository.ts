@@ -11,4 +11,14 @@ export class SpaceXApiRepository implements LaunchRepository {
 
     return retLaunchDataSchema
   }
+
+  async getLatestLaunch(): Promise<LaunchData> {
+    const { data } = await axios.get<LaunchData>("https://api.spacexdata.com/v5/launches/latest")
+
+    const retLaunchDataSchema = LaunchDataSchema.validateSync(data, {
+      stripUnknown: true,
+    })
+
+    return retLaunchDataSchema
+  }
 }
