@@ -1,3 +1,3 @@
 export * from "./health-check-controller"
 export * from "./spacex-repository"
-export * from "./launch-controller"
+export * from "./next-launch-controller"
