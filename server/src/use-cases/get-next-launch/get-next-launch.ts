@@ -1,5 +1,5 @@
 import { Either, left, right } from "@/shared"
-import { LaunchData, LaunchRepository, UseCase } from "@/use-cases/ports"
+import { LaunchDataDTO, LaunchRepository, UseCase } from "@/use-cases/ports"
 
 export class GetNextLaunch implements UseCase {
   private readonly launchRepository: LaunchRepository
@@ -8,7 +8,7 @@ export class GetNextLaunch implements UseCase {
     this.launchRepository = launchRepository
   }
 
-  public async perform(): Promise<Either<Error, LaunchData>> {
+  public async perform(): Promise<Either<Error, LaunchDataDTO>> {
     const nextLaunch = await this.launchRepository.getNextLaunch()
 
     if (!nextLaunch) {

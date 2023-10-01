@@ -3,7 +3,7 @@ import { notFound, ok } from "@/presentation/controllers/util"
 import { Either } from "@/shared"
 import { LaunchDataDTO, UseCase } from "@/use-cases/ports"
 
-export class GetLatestLaunchOperation implements ControllerOperation {
+export class GetUpcomingLaunchesOperation implements ControllerOperation {
   private useCase: UseCase
 
   constructor(useCase: UseCase) {
@@ -11,7 +11,7 @@ export class GetLatestLaunchOperation implements ControllerOperation {
   }
 
   async specificOp(): Promise<HttpResponse> {
-    const useCaseResponse: Either<Error, LaunchDataDTO> = await this.useCase.perform()
+    const useCaseResponse: Either<Error, LaunchDataDTO[]> = await this.useCase.perform()
 
     if (useCaseResponse.isRight()) {
       return ok(useCaseResponse.value)

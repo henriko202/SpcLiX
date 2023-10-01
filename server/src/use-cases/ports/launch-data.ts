@@ -72,4 +72,6 @@ export const LaunchDataSchema = yup.object().shape({
   auto_update: yup.boolean().required(),
 })
 
-export type LaunchData = yup.InferType<typeof LaunchDataSchema>
+export const LaunchDataArraySchema = yup.array().of(LaunchDataSchema)
+
+export type LaunchDataDTO = yup.InferType<typeof LaunchDataSchema>
