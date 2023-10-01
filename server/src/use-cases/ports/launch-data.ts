@@ -61,7 +61,7 @@ export const LaunchDataSchema = yup.object().shape({
   failures: yup.array().of(FailureDataSchema).nullable(),
   upcoming: yup.boolean().required(),
   details: yup.string().nullable(),
-  fairings: FairingsDataSchema,
+  fairings: FairingsDataSchema.nullable(),
   crew: yup.array().of(CrewDataSchema).nullable(),
   ships: yup.array().of(yup.string()).nullable(),
   capsules: yup.array().of(yup.string()).nullable(),
