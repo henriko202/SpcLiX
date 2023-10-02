@@ -3,6 +3,7 @@ import {
   makeHealthCheckController,
   makeLatestLaunchController,
   makeNextLaunchController,
+  makePastLaunchesController,
   makeUpcomingLaunchesController,
 } from "@/main/factories"
 import { Express, Router } from "express"
@@ -14,4 +15,5 @@ export default (app: Express): void => {
   router.get("/launches/next", adaptRoute(makeNextLaunchController()))
   router.get("/launches/latest", adaptRoute(makeLatestLaunchController()))
   router.get("/launches/upcoming", adaptRoute(makeUpcomingLaunchesController()))
+  router.get("/launches/past", adaptRoute(makePastLaunchesController()))
 }
