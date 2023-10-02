@@ -13,7 +13,7 @@
         "summary": "check the health of the server",
         "description": "This endpoint is used to check the health of the server",
         "responses": {
-          "201": {
+          "200": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -40,7 +40,7 @@
         "summary": "Get the next launch",
         "description": "This endpoint is used to get the next launch",
         "responses": {
-          "201": {
+          "200": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -59,7 +59,7 @@
         "summary": "Get the latest launch",
         "description": "This endpoint is used to get the latest launch",
         "responses": {
-          "201": {
+          "200": {
             "description": "Success",
             "content": {
               "application/json": {
@@ -78,7 +78,29 @@
         "summary": "Get the upcoming launches",
         "description": "This endpoint is used to get the upcoming launches",
         "responses": {
-          "201": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Launch"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/launches/past": {
+      "get": {
+        "tags": ["Launches"],
+        "summary": "Get the past launches",
+        "description": "This endpoint is used to get the past launches",
+        "responses": {
+          "200": {
             "description": "Success",
             "content": {
               "application/json": {

@@ -16,7 +16,7 @@ const LinksDataSchema = yup.object().shape({
 
 const FailureDataSchema = yup.object().shape({
   time: yup.number().required(),
-  altitude: yup.number().required(),
+  altitude: yup.number().nullable(),
   reason: yup.string().required(),
 })
 
