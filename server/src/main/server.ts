@@ -1,7 +1,8 @@
-import app from "@/main/config/app"
 import * as dotenv from "dotenv"
 import "module-alias/register"
 import path from "path"
+
+import app from "./config/app"
 
 dotenv.config({
   path: path.resolve(__dirname, "..", ".env"),

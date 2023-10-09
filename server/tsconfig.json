@@ -2,6 +2,7 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
+    "moduleResolution": "node",
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {

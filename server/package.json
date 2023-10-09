@@ -9,11 +9,14 @@
     "prettier": "prettier --check .",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
-    "build": "tsc",
+    "build": "tsc -p tsconfig-build.json",
     "run:prod": "node dist/main/server.js"
   },
   "author": "",
   "license": "ISC",
+  "_moduleAliases": {
+    "@": "dist"
+  },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/cors": "^2.8.14",
