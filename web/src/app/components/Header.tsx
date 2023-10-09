@@ -1,6 +1,18 @@
 "use client"
 
-import React from "react"
+import { initializeApp } from "firebase/app"
+import { fetchAndActivate, getRemoteConfig, getString, getValue } from "firebase/remote-config"
+import React, { useEffect, useState } from "react"
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDX4cD35gKa30MVv2L5s8GY7sHyRlbgdoU",
+  authDomain: "spclix.firebaseapp.com",
+  projectId: "spclix",
+  storageBucket: "spclix.appspot.com",
+  messagingSenderId: "205068650909",
+  appId: "1:205068650909:web:f81e9c6867356370458774",
+  measurementId: "G-ES1TNN909M",
+}
 
 const navItems = [
   {
@@ -22,6 +34,30 @@ const navItems = [
 ]
 
 const Header = () => {
+  const [color, setColor] = useState<string | null>("text-white")
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const app = initializeApp(firebaseConfig)
+      const remoteConfig = getRemoteConfig(app)
+
+      remoteConfig.settings.minimumFetchIntervalMillis = 36000
+
+      remoteConfig.defaultConfig = {
+        text_color: "text-white",
+      }
+
+      fetchAndActivate(remoteConfig)
+        .then(() => {
+          const val = getString(remoteConfig, "text_color")
+          setColor(val)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  })
+
   return (
     <>
       <div className="drawer sticky top-0 z-10">
@@ -37,7 +73,7 @@ const Header = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">SpcLiX</div>
+            <div className={"flex-1 px-2 mx-2 " + color}>SpcLiX</div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content */}
