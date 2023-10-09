@@ -1,7 +1,7 @@
 "use client"
 
 import { initializeApp } from "firebase/app"
-import { fetchAndActivate, getRemoteConfig, getString, getValue } from "firebase/remote-config"
+import { fetchAndActivate, getBoolean, getRemoteConfig, getString, getValue } from "firebase/remote-config"
 import React, { useEffect, useState } from "react"
 
 const firebaseConfig = {
@@ -34,23 +34,23 @@ const navItems = [
 ]
 
 const Header = () => {
-  const [color, setColor] = useState<string | null>("text-white")
+  const [changeColor, setChangeColor] = useState<boolean>(false)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const app = initializeApp(firebaseConfig)
       const remoteConfig = getRemoteConfig(app)
 
-      remoteConfig.settings.minimumFetchIntervalMillis = 36000
+      remoteConfig.settings.minimumFetchIntervalMillis = 1000
 
       remoteConfig.defaultConfig = {
-        text_color: "text-white",
+        change_text_color: false,
       }
 
       fetchAndActivate(remoteConfig)
         .then(() => {
-          const val = getString(remoteConfig, "text_color")
-          setColor(val)
+          const val = getBoolean(remoteConfig, "change_text_color")
+          setChangeColor(val)
         })
         .catch((err) => {
           console.log(err)
@@ -73,7 +73,7 @@ const Header = () => {
                 </svg>
               </label>
             </div>
-            <div className={"flex-1 px-2 mx-2 " + color}>SpcLiX</div>
+            <div className={"flex-1 px-2 mx-2 " + (changeColor ? "text-orange-400" : "text-white")}>SpcLiX</div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content */}
