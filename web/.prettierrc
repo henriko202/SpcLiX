@@ -1,0 +1,9 @@
+{
+  "printWidth": 140,
+  "trailingComma": "es5",
+  "semi": false,
+  "importOrder": ["^components/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
