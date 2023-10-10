@@ -1,15 +1,13 @@
 import setupMiddleware from "@/main/config/setup-middleware"
-import setupRoutes from "@/main/config/setup-routes"
-import express, { NextFunction, Request, Response } from "express"
+import setupRoutes_v1 from "@/main/config/setup-routes-v1"
+import express from "express"
+
+import setupSwagger from "./setup-swagger"
 
 const app = express()
 
+setupSwagger(app)
 setupMiddleware(app)
-setupRoutes(app)
-
-// Error handler
-// app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
-//   res.status(400).json({ error: err.message })
-// })
+setupRoutes_v1(app)
 
 export default app
